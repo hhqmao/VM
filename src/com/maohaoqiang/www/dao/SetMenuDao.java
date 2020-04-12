@@ -1,5 +1,8 @@
-package com.maohaoqiang.www.util;
+package com.maohaoqiang.www.dao;
 
+
+import com.maohaoqiang.www.util.LoginUtil;
+import com.maohaoqiang.www.view.UserView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +10,8 @@ import java.sql.ResultSet;
 import java.util.Map;
 import java.util.Scanner;
 
-public class SetMenu {
-    private SetMenu(){}
+public class SetMenuDao {
+    private SetMenuDao(){}
     public static boolean set(String fun, Map<String,String> userLogin){
         boolean a=true;
         Connection conn=null;
@@ -22,21 +25,12 @@ public class SetMenu {
             stat.setString(1,fun);
             rs=stat.executeQuery();
             if (rs.next()){
-                a= StoreUtil.loseMenu(conn,stat,fun,userLogin);//库存、资金、和记录消费记录
+                a= StoreDao.loseMenu(conn,stat,fun,userLogin);//库存、资金、和记录消费记录
                 //若库存、资金、和记录消费记录的操作完成才能确定下单成功
                 if(a) {
 
                     System.out.println("       下单成功");
-                    System.out.println("********************");
-                    System.out.println("         返回");
-                    System.out.println("         退出");
-                    System.out.print("您选择：");
-                    String s = scanner.nextLine();
-                    if (s.equalsIgnoreCase("返回")) a = true;
-                    if (s.equalsIgnoreCase("退出")) {
-                        System.out.println("谢谢光临");
-                        System.exit(1);
-                    }
+                    a= UserView.comment();
                 }else System.out.println("下单失败");
             }else System.out.println("下单失败");
         }catch (Exception e){

@@ -2,18 +2,31 @@ package com.maohaoqiang.www.po;
 
 
 public class Menu {
-    private int view;
-    private String menu;
-    private int menu_id;
-    private String from;
+   private int id;
+   private int view;
+   private String menu;
+   private String from;
+   private  int cash;
+   private  int number;
 
-    public Menu() {}
+    public Menu() {
+    }
 
-    public Menu(int view, String menu, int menu_id, String from) {
+    public Menu(int id, int view, String menu, String from, int cash, int number) {
+        this.id = id;
         this.view = view;
         this.menu = menu;
-        this.menu_id = menu_id;
         this.from = from;
+        this.cash = cash;
+        this.number = number;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getView() {
@@ -32,14 +45,6 @@ public class Menu {
         this.menu = menu;
     }
 
-    public int getMenu_id() {
-        return menu_id;
-    }
-
-    public void setMenu_id(int menu_id) {
-        this.menu_id = menu_id;
-    }
-
     public String getFrom() {
         return from;
     }
@@ -48,4 +53,19 @@ public class Menu {
         this.from = from;
     }
 
+    public int getCash() {
+        return cash;
+    }
+
+    public void setCash(int cash) {
+        this.cash = cash;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }

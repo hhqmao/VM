@@ -1,23 +1,23 @@
 package com.maohaoqiang.www.po;
 
 public class View {
-    private int view;
+    private int id;
     private String view_name;
 
     public View() {
     }
 
-    public View(int view, String view_name) {
-        this.view = view;
+    public View(int id, String view_name) {
+        this.id = id;
         this.view_name = view_name;
     }
 
-    public int getView() {
-        return view;
+    public int getId() {
+        return id;
     }
 
-    public void setView(int view) {
-        this.view = view;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getView_name() {

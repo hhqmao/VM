@@ -2,6 +2,7 @@ package com.maohaoqiang.www.dao;
 
 
 import com.maohaoqiang.www.util.LoginUtil;
+import com.maohaoqiang.www.view.UserView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -68,19 +69,7 @@ public class UserDaoImpl implements UserDao {
             stat=conn.prepareStatement(sql);
             stat.setString(1,loginname);
             rs=stat.executeQuery();
-            if (rs.next()){
-                System.out.println("您的余额还剩："+rs.getInt("mony"));
-                System.out.println("********************");
-                System.out.println("  返回\t\t退出");
-                System.out.print("您的选择是：");
-                Scanner scanner=new Scanner(System.in);
-                String fun=scanner.nextLine();
-                if(fun.equalsIgnoreCase("返回"))a=true;
-                if (fun.equalsIgnoreCase("退出")){
-                    System.out.println("谢谢光临");
-                    System.exit(1);
-                }
-            }
+            a= UserView.selectMoney(rs);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -103,23 +92,7 @@ public class UserDaoImpl implements UserDao {
             stat=conn.prepareStatement(sql);
             stat.setString(1,loginname);
             rs=stat.executeQuery();
-            while (rs.next()!=false){
-                String fun=rs.getNString("record");
-                System.out.println(fun);
-                a=true;
-            } if(a){
-                a=false;
-                System.out.println("******功能******");
-                System.out.println("   返回\t\t退出");
-                System.out.println("您的选择是");
-                Scanner scanner=new Scanner(System.in);
-                String fun=scanner.nextLine();
-                if(fun.equalsIgnoreCase("返回"))a=true;
-                if (fun.equalsIgnoreCase("退出")){
-                    System.out.println("谢谢光临");
-                    System.exit(1);
-                }
-            }
+            a=UserView.setMoney(rs);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
