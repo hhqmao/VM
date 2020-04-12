@@ -15,9 +15,7 @@ public class UserChoice {
 
     public static boolean checkView(){
         boolean a=false;
-        DecideView.decideView();
-            Scanner scanner=new Scanner(System.in);
-            String fun=scanner.nextLine();
+            String fun=DecideView.decideView();
             if (fun.equalsIgnoreCase("点餐")||fun.equalsIgnoreCase("返回")||fun.equalsIgnoreCase("退出")){
                 if(fun.equalsIgnoreCase("点餐"))a=true;
                 if (fun.equalsIgnoreCase("返回"))a=false;
@@ -30,10 +28,8 @@ public class UserChoice {
     }
     public static boolean personalCenter(Map<String,String> userLogin){
         boolean a=false;
-        PersonalCenterView.view();
-        Scanner scanner=new Scanner(System.in);
+        String fun=PersonalCenterView.view();
         UserDaoImpl userDao=new UserDaoImpl();
-        String fun=scanner.nextLine();
         if (fun.equalsIgnoreCase("查询余额")||fun.equalsIgnoreCase("查询历史记录")
         ||fun.equalsIgnoreCase("返回")||fun.equalsIgnoreCase("退出")){
             if (fun.equalsIgnoreCase("查询余额")){

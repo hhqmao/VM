@@ -11,24 +11,24 @@ public class UserControl {
     private UserControl(){}
     public static  int userWatch(int judge, Map<String,String> userlogin){
         //a是进行返回功能实现的关键
-        boolean a=false;
-        while(!a){
+        boolean decide=false;
+        while(!decide){
             if (judge==1){
                 UserView.BasicUserView();
                 Scanner scanner=new Scanner(System.in);
                 String fun=scanner.nextLine();
-                a=true;
-                while (a){
+                decide=true;
+                while (decide){
                     if (fun.equalsIgnoreCase("查看窗口")||fun.equalsIgnoreCase("搜索菜品")
                             ||fun.equalsIgnoreCase("退出")||fun.equalsIgnoreCase("个人中心")){
                         if (fun.equalsIgnoreCase("查看窗口")){
                             MenuDaoImpl menuDao=new MenuDaoImpl();
                             menuDao.selectAll();//遍历输出菜品
-                            a= UserChoice.checkView();//点餐界面功能选择
-                            if (a){
+                            decide= UserChoice.checkView();//点餐界面功能选择
+                            if (decide){
                                 System.out.print("菜品：");
                                 String s=scanner.nextLine();
-                                a= SetMenuDao.set(s,userlogin);//传入菜名和账号信息，实现点餐功能
+                                decide= SetMenuDao.set(s,userlogin);//传入菜名和账号信息，实现点餐功能
                             }
                         }
                         if (fun.equalsIgnoreCase("搜索菜品")){
@@ -36,10 +36,10 @@ public class UserControl {
                             System.out.print("请输入您要搜索的菜名：");
                             MenuDaoImpl menuDao=new MenuDaoImpl();
                             String s=scanner.nextLine();
-                            a=menuDao.select(s,userlogin);//实现查询功能并且可以实现点餐
+                            decide=menuDao.select(s,userlogin);//实现查询功能并且可以实现点餐
                         }
                         if(fun.equalsIgnoreCase("个人中心")){
-                            a= UserChoice.personalCenter(userlogin);//进入个人中心界面
+                            decide= UserChoice.personalCenter(userlogin);//进入个人中心界面
                         }
                         if (fun.equalsIgnoreCase("退出")){
                             System.out.println("谢谢光临");
@@ -47,7 +47,7 @@ public class UserControl {
                         }
                     }else{
                         System.out.println("输入错误");
-                        a=false;
+                        decide=false;
                     }
                 }
             }

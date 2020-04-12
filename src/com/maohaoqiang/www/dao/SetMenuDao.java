@@ -17,7 +17,6 @@ public class SetMenuDao {
         Connection conn=null;
         PreparedStatement stat=null;
         ResultSet rs=null;
-        Scanner scanner=new Scanner(System.in);
         try {
             conn= LoginUtil.getoCnnetion();
             String sql="select menu from menu where menu=? ";
@@ -28,7 +27,6 @@ public class SetMenuDao {
                 a= StoreDao.loseMenu(conn,stat,fun,userLogin);//库存、资金、和记录消费记录
                 //若库存、资金、和记录消费记录的操作完成才能确定下单成功
                 if(a) {
-
                     System.out.println("       下单成功");
                     a= UserView.comment();
                 }else System.out.println("下单失败");
