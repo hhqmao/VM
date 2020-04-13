@@ -1,25 +1,31 @@
 package com.maohaoqiang.www.view;
 
+import com.maohaoqiang.www.po.Menu;
+import com.maohaoqiang.www.util.JudgeMenu;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MenuView {
     public static void menuView(ResultSet rs) throws SQLException {
-        System.out.println("菜名\t\t菜系\t\t店名");
+        System.out.println("菜名\t\t菜系\t库存\t店名");
         while (rs.next()){
             String menu=rs.getNString("菜名");
             String from=rs.getNString("菜系");
             String view_name=rs.getNString("店名");
+            int num=rs.getInt("库存");
             System.out.println("————————————————————————————————————————");
-            System.out.println(menu+"|\t"+from+"|\t"+view_name);
+            System.out.println(menu+"|\t"+from+"|\t"+num+"|\t"+view_name);
         }
     }
-    public static String searchView(ResultSet rs) throws SQLException {
+    public static boolean searchView(ResultSet rs) throws SQLException {
         System.out.println("菜名\t\t菜系\t\t店名");
+        boolean a=false;
         //遍历菜品
-        if (rs.next()){
+        while (rs.next()){
             String fun=rs.getNString("菜名");
             System.out.print(rs.getNString("菜名"));
             System.out.print("\t");
@@ -27,22 +33,64 @@ public class MenuView {
             System.out.print("\t");
             System.out.print(rs.getString("店名"));
             System.out.println();
-            return fun;
-        }else {
-            return null;
+            a=true;
         }
+        return a;
     }
-    public static int insertView(PreparedStatement stat) throws SQLException {
+    public static Menu insertView() {
         Scanner scanner=new Scanner(System.in);
-        System.out.print("输入窗口:");
-        stat.setInt(1,scanner.nextInt());
         System.out.print("输入菜名：");
-        stat.setString(2,scanner.nextLine());
+        String name=scanner.nextLine();
         System.out.print("输入菜系：");
-        stat.setString(3,scanner.nextLine());
+        String from=scanner.nextLine();
+        System.out.print("输入窗口：");
+        int view=scanner.nextInt();
         System.out.print("输入价格：");
-        stat.setInt(4,scanner.nextInt());
-        int count=stat.executeUpdate();
-        return count;
+        int cash=scanner.nextInt();
+        System.out.print("输入数量：");
+        int num=scanner.nextInt();
+        Menu menu=new Menu(view,name,from,cash,num);
+        return menu;
+    }
+    public static String deleteView(){
+        System.out.println("********************");
+        System.out.print("输入你想要删除的菜名:");
+        Scanner scanner=new Scanner(System.in);
+        return scanner.nextLine();
+    }
+    public static String updateView(){
+        System.out.println("********************");
+        System.out.println("    1.更新菜名");
+        System.out.println("    2.更新价格");
+        System.out.println("    3.补充数量");
+        System.out.println("      4.返回");
+        System.out.println("      5.退出");
+        System.out.print("您选择的功能：");
+        Scanner scanner=new Scanner(System.in);
+        return scanner.nextLine();
+    }
+    public static String updateChoice(){
+        System.out.println("********************");
+        System.out.print("输入现有菜名：");
+        Scanner scanner=new Scanner(System.in);
+        return scanner.nextLine();
+    }
+    public static String getMenuNam(){
+        System.out.println("********************");
+        System.out.print("输入新菜名：");
+        Scanner scanner=new Scanner(System.in);
+        return scanner.nextLine();
+    }
+    public static String getMenuCash(){
+        System.out.println("********************");
+        System.out.print("输入新价格：");
+        Scanner scanner=new Scanner(System.in);
+        return scanner.nextLine();
+    }
+    public static String getMenuNum(){
+        System.out.println("********************");
+        System.out.print("输入补充数量：");
+        Scanner scanner=new Scanner(System.in);
+        return scanner.nextLine();
     }
 }

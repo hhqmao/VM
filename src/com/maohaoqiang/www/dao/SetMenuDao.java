@@ -28,7 +28,7 @@ public class SetMenuDao {
                 //若库存、资金、和记录消费记录的操作完成才能确定下单成功
                 if(a) {
                     System.out.println("       下单成功");
-                    a= UserView.comment();
+                    a=UserView.comment();
                 }else System.out.println("下单失败");
             }else System.out.println("下单失败");
         }catch (Exception e){

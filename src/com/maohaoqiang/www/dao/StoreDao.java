@@ -26,7 +26,7 @@ public class StoreDao {
             stat.setString(2,s);
             count+=stat.executeUpdate();
             //资金加到经理账号上
-            sql="update user set mony=mony+(select cash from menu where menu=?) where power=4";
+            sql="update user set mony=mony+(select cash from menu where menu=?) where power=3";
             stat=conn.prepareStatement(sql);
             stat.setString(1,fun);
             count+=stat.executeUpdate();

@@ -5,48 +5,56 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UserView {
-    public static void BasicUserView(){
+    public static String basicUserView(){
         System.out.println("欢迎使用WE外卖系统");
         System.out.println("******功能******");
-        System.out.println("    查看窗口");
-        System.out.println("    搜索菜品");
-        System.out.println("    个人中心");
-        System.out.println("      退出");
+        System.out.println("  1.查看窗口");
+        System.out.println("  2.搜索菜品");
+        System.out.println("  3.个人中心");
+        System.out.println("    4.退出");
         System.out.print("您选择的功能：");
+        Scanner scanner=new Scanner(System.in);
+        String fun=scanner.nextLine();
+        return fun;
     }
-    public static boolean selectMoney(ResultSet rs) throws SQLException {
-        if (rs.next()){
+    public static String basicUnUserView(){
+        System.out.println("******功能******");
+        System.out.println("    1.管理");
+        System.out.println("    2.外卖");
+        System.out.println("    3.退出");
+        System.out.print("您选择的功能：");
+        Scanner scanner=new Scanner(System.in);
+        String fun=scanner.nextLine();
+        return fun;
+    }
+    public static String chefView(){
+        System.out.println("******功能******");
+        System.out.println("  1.添加菜品");
+        System.out.println("  2.下架菜品");
+        System.out.println("  3.更新菜品");
+        System.out.println("  4.查看菜品");
+        System.out.println("    5.返回");
+        System.out.println("    6.退出");
+        System.out.print("您选择的功能：");
+        Scanner scanner=new Scanner(System.in);
+        String fun=scanner.nextLine();
+        return fun;
+    }
+    public static void selectMoney(ResultSet rs) throws SQLException {
             System.out.println("您的余额还剩："+rs.getInt("mony"));
-            return comment();
-        }else return false;
     }
-    public static boolean setMoney(ResultSet rs) throws SQLException {
-        boolean a=false;
-        while (rs.next()!=false){
+    public static void setMoney(ResultSet rs) throws SQLException {
             String fun=rs.getNString("record");
             System.out.println(fun);
-            a=true;
-        } if(a){
-            a=comment();
-        }else return a;
-        return a;
     }
     public static boolean comment(){
-        boolean a;
+        boolean a=false;
         System.out.println("******功能******");
-        System.out.println("   返回\t\t退出");
+        System.out.println("1.返回\t\t2.退出");
         System.out.print("您的选择是：");
         Scanner scanner=new Scanner(System.in);
         String fun=scanner.nextLine();
-        if(fun.equalsIgnoreCase("返回")){
-            a=true;
-        }else {
-            a=false;
-        }
-        if (fun.equalsIgnoreCase("退出")){
-            System.out.println("谢谢光临");
-            System.exit(1);
-        }
+        if (fun.equalsIgnoreCase("退出")||fun.equalsIgnoreCase("2"))Out.exit();
         return a;
     }
 }

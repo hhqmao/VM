@@ -12,8 +12,7 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(int id, int view, String menu, String from, int cash, int number) {
-        this.id = id;
+    public Menu( int view, String menu, String from, int cash, int number) {
         this.view = view;
         this.menu = menu;
         this.from = from;
@@ -21,13 +20,6 @@ public class Menu {
         this.number = number;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getView() {
         return view;

@@ -3,6 +3,7 @@ package com.maohaoqiang.www;
 import com.maohaoqiang.www.dao.LoginDao;
 import com.maohaoqiang.www.service.UserControl;
 import com.maohaoqiang.www.view.LoginView;
+import com.maohaoqiang.www.view.Out;
 
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class Main {
             Map<String,String> userLogin=loginView.inPut();//获取账号密码
             //与数据库中的账号密码进行比对，并判断权限等级
             judge= LoginDao.login(userLogin);
-            if(judge==0)System.out.println("账号或者密码错误");
+            if(judge==0) Out.loginError();
             else UserControl.userWatch(judge,userLogin);//进入用户界面
         }
     }
