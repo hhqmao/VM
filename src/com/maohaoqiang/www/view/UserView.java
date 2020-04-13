@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UserView {
+    //用户的基本页面
     public static String basicUserView(){
         System.out.println("欢迎使用WE外卖系统");
         System.out.println("******功能******");
@@ -17,6 +18,7 @@ public class UserView {
         String fun=scanner.nextLine();
         return fun;
     }
+    //厨师的初始页面
     public static String basicUnUserView(){
         System.out.println("******功能******");
         System.out.println("    1.管理");
@@ -27,6 +29,7 @@ public class UserView {
         String fun=scanner.nextLine();
         return fun;
     }
+    //厨师的功能页面
     public static String chefView(){
         System.out.println("******功能******");
         System.out.println("  1.添加菜品");
@@ -40,9 +43,11 @@ public class UserView {
         String fun=scanner.nextLine();
         return fun;
     }
+    //查看账户余额
     public static void selectMoney(ResultSet rs) throws SQLException {
             System.out.println("您的余额还剩："+rs.getInt("mony"));
     }
+    //遍历最近五条消费记录
     public static void setMoney(ResultSet rs) throws SQLException {
             String fun=rs.getNString("record");
             System.out.println(fun);

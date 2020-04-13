@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MangerView {
+    //经理操作界面
     public static String manageSecond(){
         System.out.println("********************");
         System.out.println("     1.查看用户");
@@ -19,6 +20,7 @@ public class MangerView {
         String fun=scanner.nextLine();
         return fun;
     }
+    //经理初始界面
     public static String mangerFrist(){
         System.out.println("******功能******");
         System.out.println("    1.管理");
@@ -28,12 +30,14 @@ public class MangerView {
         String fun=scanner.nextLine();
         return fun;
     }
+    //遍历用户
     public static void selectUser(ResultSet rs) throws SQLException {
         String name=rs.getString("real_name");
         String emil=rs.getNString("emil");
         String phone_num=rs.getNString("phone_num");
         System.out.println(name+"|\t\t\t\t"+emil+"|\t\t\t\t"+phone_num);
     }
+    //经理对厨师的操作页面
     public static String mangeChef(){
         System.out.println("******功能******");
         System.out.println("  1.增加厨师");
@@ -46,6 +50,7 @@ public class MangerView {
         String fun=scanner.nextLine();
         return fun;
     }
+    //经理增加厨师
     public static User getChef(){
         Scanner scanner=new Scanner(System.in);
         System.out.println("********************");
@@ -64,6 +69,7 @@ public class MangerView {
         User user=new User(no,paw,name,2,view,0,emil,phone_num);
         return user;
     }
+    //经理删除厨师
     public static String deleteChef(){
         System.out.println("********************");
         System.out.print("输入账号：");
@@ -71,6 +77,7 @@ public class MangerView {
         String fun=scanner.nextLine();
         return fun;
     }
+    //遍历厨师名单
     public static void selectChef(ResultSet rs) throws SQLException {
         System.out.println(rs.getNString("real_name")+"\t\t"+rs.getString("窗口"));
     }

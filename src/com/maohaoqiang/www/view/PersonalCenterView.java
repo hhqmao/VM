@@ -3,6 +3,7 @@ package com.maohaoqiang.www.view;
 import java.util.Scanner;
 
 public class PersonalCenterView {
+    //个人中心页面
     public static String view(){
         System.out.println("******功能******");
         System.out.println("  1.查询余额");

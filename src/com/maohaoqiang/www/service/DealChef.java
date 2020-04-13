@@ -14,7 +14,7 @@ public class DealChef {
         if (fun.equalsIgnoreCase("外卖")||fun.equalsIgnoreCase("管理")||
                 fun.equalsIgnoreCase("1")||fun.equalsIgnoreCase("2")){
             if (fun.equalsIgnoreCase("外卖")||fun.equalsIgnoreCase("2")){
-                fun2= UserView.basicUserView();
+                fun2= UserView.basicUserView();//获得下一步指令
                 while (decide){
                     decide=DealUser.user(fun2,decide,userlogin);
                 }

@@ -15,6 +15,7 @@ public class Out {
     public static void updateSuccess(){
         System.out.println("更新成功");
     }
+    //退出程序
     public static void exit(){
         System.out.println("谢谢光临");
         System.exit(1);
@@ -34,4 +35,5 @@ public class Out {
     public static void selectSuccess(){
         System.out.println("查找成功");
     }
+    public static void selectChefMenu(){System.out.println("|菜品|");}
 }

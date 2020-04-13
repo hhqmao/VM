@@ -7,6 +7,7 @@ import com.maohaoqiang.www.service.UserChoice;
 import com.maohaoqiang.www.view.DecideView;
 import com.maohaoqiang.www.view.MenuView;
 import com.maohaoqiang.www.view.Out;
+import com.maohaoqiang.www.view.UserView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 public class MenuDaoImpl implements MenuDao {
     @Override
+    //添加菜品
     public boolean insert(Map<String,String> userlogin,Menu menu){
         String sql="insert into menu (view,menu,from1,cash,number) values (?,?,?,?,?)";
         Connection conn= null;
@@ -43,6 +45,7 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
+    //删除菜品
     public boolean delect(String menu,Map<String,String> userlogin) {
         String sql="delete from menu where view=(select view from user where user_no=?) and menu=?";
         boolean a=true;
@@ -66,6 +69,7 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
+    //模糊查寻菜品
     public  boolean select(String menu,Map<String,String> userlogin) {
         String sql="select * from (select menu.menu '菜名',menu.from1 '菜系',view.view_name '店名' from menu join view on menu.view=view.id) a where 菜名 like ?";
         String fun="";
@@ -98,6 +102,7 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
+    //查看所有菜品
     public  void selectAll() {
         Connection conn=null;
         PreparedStatement stat=null;
@@ -120,6 +125,7 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
+    //更新菜品名字
     public boolean updatename(String menu,String newnam) {
         boolean succ=false;
         Connection conn=null;
@@ -144,6 +150,7 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
+    //更新菜品价格
     public boolean updatecash(String menu,String newcash) {
         boolean succ=false;
         Connection conn=null;
@@ -168,6 +175,7 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
+    //补充菜品数量
     public boolean updatenumber(String menu,String newnum) {
         boolean succ=false;
         Connection conn=null;
@@ -192,21 +200,24 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
+    //查看厨师窗口的菜品
     public boolean selectChefMenu(Map<String, String> userlogin) {
         boolean succ=false;
         Connection conn=null;
         PreparedStatement stat=null;
         ResultSet rs=null;
-        String sql="select menu from user where view=?";
+        String sql="select menu from menu where view =(select view from user where user_no=?)";
         try {
             conn=LoginUtil.getoCnnetion();
             stat=conn.prepareStatement(sql);
             stat.setString(1,userlogin.get("loginname"));
             rs=stat.executeQuery();
-            if(rs.next()){
+            Out.selectChefMenu();
+            while (rs.next()){
                 Out.outMenu(rs.getNString("menu"));
                 succ=true;
             }
+            if(succ)succ= UserView.comment();
         } catch (Exception e) {
             e.printStackTrace();
         }finally {

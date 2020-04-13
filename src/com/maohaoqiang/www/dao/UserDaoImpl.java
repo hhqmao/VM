@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 public class UserDaoImpl implements UserDao {
     @Override
+    //查用户
     public boolean selectUser() {
         boolean succ=false;
         Connection conn=null;
@@ -45,6 +46,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //查厨师
     public boolean selectChef() {
         boolean succ=false;
         Connection conn=null;
@@ -88,6 +90,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //增加厨师
     public boolean insertChef() {
         boolean succ=false;
         Connection conn=null;
@@ -118,6 +121,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //删除厨师
     public boolean deleteChef(String name) {
         boolean succ=false;
         Connection conn=null;
@@ -152,6 +156,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //查余额
     public boolean selectMoney(Map<String,String> userLogin) {
         boolean a=false;
         Connection conn=null;
@@ -180,6 +185,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    //查记录
     public boolean saveMoney(Map<String, String> userLogin) {
         boolean a=false;
         Connection conn=null;

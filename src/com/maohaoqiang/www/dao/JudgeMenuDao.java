@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class JudgeMenuDao {
+    //判断身份和窗口是否正确
     public boolean jdugeMenu(String loginname,int view) {
         Connection conn=null;
         PreparedStatement stat=null;

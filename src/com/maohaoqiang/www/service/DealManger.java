@@ -13,7 +13,7 @@ public class DealManger {
         if(fun.equalsIgnoreCase("1")||fun.equalsIgnoreCase("管理")
         ||fun.equalsIgnoreCase("2")||fun.equalsIgnoreCase("退出")){
             if(fun.equalsIgnoreCase("1")||fun.equalsIgnoreCase("管理")){
-                fun2=MangerView.manageSecond();
+                fun2=MangerView.manageSecond();//获得下一步操作的指令
                 while (decide){
                     if(fun2.equalsIgnoreCase("查看用户")||fun2.equalsIgnoreCase("1")||
                             fun2.equalsIgnoreCase("管理厨师")||fun2.equalsIgnoreCase("2")||
@@ -24,7 +24,7 @@ public class DealManger {
                             decide=userDao.selectUser();
                         }
                         if(fun2.equalsIgnoreCase("管理厨师")||fun2.equalsIgnoreCase("2")){
-                            String choice=MangerView.mangeChef();
+                            String choice=MangerView.mangeChef();//获得下一步操作的指令
                             if (choice.equalsIgnoreCase("增加厨师")||choice.equalsIgnoreCase("1")||
                                     choice.equalsIgnoreCase("删除厨师")||choice.equalsIgnoreCase("2")||
                                     choice.equalsIgnoreCase("查看厨师")||choice.equalsIgnoreCase("3")||

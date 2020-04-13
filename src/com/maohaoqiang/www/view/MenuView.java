@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MenuView {
+    //遍历菜单
     public static void menuView(ResultSet rs) throws SQLException {
         System.out.println("菜名\t\t菜系\t库存\t店名");
         while (rs.next()){
@@ -21,6 +22,7 @@ public class MenuView {
             System.out.println(menu+"|\t"+from+"|\t"+num+"|\t"+view_name);
         }
     }
+    //遍历模糊查询得到的菜单
     public static boolean searchView(ResultSet rs) throws SQLException {
         System.out.println("菜名\t\t菜系\t\t店名");
         boolean a=false;
@@ -37,6 +39,7 @@ public class MenuView {
         }
         return a;
     }
+    //厨师添加新菜品的界面
     public static Menu insertView() {
         Scanner scanner=new Scanner(System.in);
         System.out.print("输入菜名：");
@@ -52,12 +55,14 @@ public class MenuView {
         Menu menu=new Menu(view,name,from,cash,num);
         return menu;
     }
+    //厨师删除菜品的界面
     public static String deleteView(){
         System.out.println("********************");
         System.out.print("输入你想要删除的菜名:");
         Scanner scanner=new Scanner(System.in);
         return scanner.nextLine();
     }
+    //厨师选择对菜品操作的界面
     public static String updateView(){
         System.out.println("********************");
         System.out.println("    1.更新菜名");
@@ -69,24 +74,29 @@ public class MenuView {
         Scanner scanner=new Scanner(System.in);
         return scanner.nextLine();
     }
+    //厨师更新菜品的界面
+    //获得厨师需要操作菜品的名字
     public static String updateChoice(){
         System.out.println("********************");
         System.out.print("输入现有菜名：");
         Scanner scanner=new Scanner(System.in);
         return scanner.nextLine();
     }
+    //厨师更新菜品名字
     public static String getMenuNam(){
         System.out.println("********************");
         System.out.print("输入新菜名：");
         Scanner scanner=new Scanner(System.in);
         return scanner.nextLine();
     }
+    //厨师更新菜品价格
     public static String getMenuCash(){
         System.out.println("********************");
         System.out.print("输入新价格：");
         Scanner scanner=new Scanner(System.in);
         return scanner.nextLine();
     }
+    //厨师补充菜品数量
     public static String getMenuNum(){
         System.out.println("********************");
         System.out.print("输入补充数量：");
