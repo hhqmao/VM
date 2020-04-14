@@ -1,12 +1,9 @@
 package com.maohaoqiang.www.view;
 
 import com.maohaoqiang.www.po.Menu;
-import com.maohaoqiang.www.util.JudgeMenu;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 import java.util.Scanner;
 
 public class MenuView {
@@ -24,15 +21,17 @@ public class MenuView {
     }
     //遍历模糊查询得到的菜单
     public static boolean searchView(ResultSet rs) throws SQLException {
-        System.out.println("菜名\t\t菜系\t\t店名");
+        System.out.println("菜名\t菜系\t数量\t店名");
         boolean a=false;
         //遍历菜品
         while (rs.next()){
             String fun=rs.getNString("菜名");
             System.out.print(rs.getNString("菜名"));
-            System.out.print("\t");
+            System.out.print("|\t");
             System.out.print(rs.getString("菜系"));
-            System.out.print("\t");
+            System.out.print("|\t");
+            System.out.print(rs.getString("库存"));
+            System.out.print("|\t");
             System.out.print(rs.getString("店名"));
             System.out.println();
             a=true;
@@ -46,13 +45,11 @@ public class MenuView {
         String name=scanner.nextLine();
         System.out.print("输入菜系：");
         String from=scanner.nextLine();
-        System.out.print("输入窗口：");
-        int view=scanner.nextInt();
         System.out.print("输入价格：");
         int cash=scanner.nextInt();
         System.out.print("输入数量：");
         int num=scanner.nextInt();
-        Menu menu=new Menu(view,name,from,cash,num);
+        Menu menu=new Menu(name,from,cash,num);
         return menu;
     }
     //厨师删除菜品的界面

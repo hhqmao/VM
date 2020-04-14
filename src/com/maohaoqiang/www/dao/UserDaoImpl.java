@@ -173,13 +173,13 @@ public class UserDaoImpl implements UserDao {
                 UserView.selectMoney(rs);
                 a=true;
             }
-            if(a)a=UserView.comment();
+            if(a)UserView.comment();
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
             LoginUtil.close(rs,stat,conn);
         }
-        if (a==false)System.out.println("输入错误");
+        if (a==false)Out.error();
 
         return a;
     }

@@ -13,8 +13,7 @@ public class MangerView {
         System.out.println("     1.查看用户");
         System.out.println("     2.管理厨师");
         System.out.println("     3.查看收入");
-        System.out.println("       4.返回");
-        System.out.println("       5.退出");
+        System.out.println("       4.退出");
         System.out.print("您选择的功能：");
         Scanner scanner=new Scanner(System.in);
         String fun=scanner.nextLine();

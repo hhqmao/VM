@@ -20,8 +20,8 @@ public class Out {
         System.out.println("谢谢光临");
         System.exit(1);
     }
-    public static void outMenu(String menu){
-        System.out.println(menu);
+    public static void outMenu(String menu,String number){
+        System.out.println(menu+"|\t"+number);
     }
     public static void loginError(){
         System.out.println("账号或者密码错误");
@@ -35,5 +35,5 @@ public class Out {
     public static void selectSuccess(){
         System.out.println("查找成功");
     }
-    public static void selectChefMenu(){System.out.println("|菜品|");}
+    public static void selectChefMenu(){System.out.println("菜品\t库存");}
 }

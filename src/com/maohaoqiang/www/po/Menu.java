@@ -12,8 +12,7 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu( int view, String menu, String from, int cash, int number) {
-        this.view = view;
+    public Menu(String menu, String from, int cash, int number) {
         this.menu = menu;
         this.from = from;
         this.cash = cash;

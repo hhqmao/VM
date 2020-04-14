@@ -1,7 +1,6 @@
 package com.maohaoqiang.www.dao;
 
 import com.maohaoqiang.www.po.Menu;
-import com.maohaoqiang.www.util.JudgeMenu;
 import com.maohaoqiang.www.util.LoginUtil;
 import com.maohaoqiang.www.service.UserChoice;
 import com.maohaoqiang.www.view.DecideView;
@@ -18,7 +17,7 @@ public class MenuDaoImpl implements MenuDao {
     @Override
     //添加菜品
     public boolean insert(Map<String,String> userlogin,Menu menu){
-        String sql="insert into menu (view,menu,from1,cash,number) values (?,?,?,?,?)";
+        String sql="insert into menu (view,menu,from1,cash,number) values ((select view from user where user_no=?),?,?,?,?)";
         Connection conn= null;
         int count=0;
         PreparedStatement stat=null;
@@ -26,9 +25,7 @@ public class MenuDaoImpl implements MenuDao {
         try {
             conn= LoginUtil.getoCnnetion();
             stat=conn.prepareStatement(sql);
-            if(JudgeMenu.judguMenu(userlogin,menu.getView())) {
-                stat.setInt(1,menu.getView());
-            }
+            stat.setString(1,userlogin.get("loginname"));
             stat.setString(2,menu.getMenu());
             stat.setString(3,menu.getFrom());
             stat.setInt(4,menu.getCash());
@@ -59,9 +56,9 @@ public class MenuDaoImpl implements MenuDao {
             if(stat.executeUpdate()!=0){
                 Out.deleteSuccess();
                 a=false;
-            }
+            }else Out.error();
         } catch (Exception e) {
-            Out.error();
+            e.printStackTrace();
         }finally {
             LoginUtil.close(null,stat,conn);
         }
@@ -71,7 +68,8 @@ public class MenuDaoImpl implements MenuDao {
     @Override
     //模糊查寻菜品
     public  boolean select(String menu,Map<String,String> userlogin) {
-        String sql="select * from (select menu.menu '菜名',menu.from1 '菜系',view.view_name '店名' from menu join view on menu.view=view.id) a where 菜名 like ?";
+        String sql="select * from (select menu.menu '菜名',menu.from1 '菜系',view.view_name '店名',menu.number '库存' from " +
+                "menu join view on menu.view=view.id) a where 菜名 like ?";
         String fun="";
         Connection conn= null;
         PreparedStatement stat=null;
@@ -87,7 +85,7 @@ public class MenuDaoImpl implements MenuDao {
             rs=stat.executeQuery();
             a=MenuView.searchView(rs);
         } catch (Exception e) {
-            e.printStackTrace();
+            Out.error();
         }finally {
             LoginUtil.close(rs,stat,conn);
         }
@@ -140,9 +138,9 @@ public class MenuDaoImpl implements MenuDao {
             if(count!=0){
                 Out.updateSuccess();
                 succ=true;
-            }
+            }else Out.error();
         } catch (Exception e) {
-            Out.error();
+            e.printStackTrace();
         }finally {
             LoginUtil.close(null,stat,conn);
         }
@@ -165,9 +163,9 @@ public class MenuDaoImpl implements MenuDao {
             if(count!=0){
                 Out.updateSuccess();
                 succ=true;
-            }
+            }else Out.error();
         } catch (Exception e) {
-            Out.error();
+            e.printStackTrace();
         }finally {
             LoginUtil.close(null,stat,conn);
         }
@@ -190,9 +188,9 @@ public class MenuDaoImpl implements MenuDao {
             if(count!=0){
                 Out.updateSuccess();
                 succ=true;
-            }
+            }else Out.error();
         } catch (Exception e) {
-            Out.error();
+            e.printStackTrace();
         }finally {
             LoginUtil.close(null,stat,conn);
         }
@@ -206,7 +204,7 @@ public class MenuDaoImpl implements MenuDao {
         Connection conn=null;
         PreparedStatement stat=null;
         ResultSet rs=null;
-        String sql="select menu from menu where view =(select view from user where user_no=?)";
+        String sql="select menu,number from menu where view =(select view from user where user_no=?)";
         try {
             conn=LoginUtil.getoCnnetion();
             stat=conn.prepareStatement(sql);
@@ -214,7 +212,7 @@ public class MenuDaoImpl implements MenuDao {
             rs=stat.executeQuery();
             Out.selectChefMenu();
             while (rs.next()){
-                Out.outMenu(rs.getNString("menu"));
+                Out.outMenu(rs.getNString("menu"),rs.getString("number"));
                 succ=true;
             }
             if(succ)succ= UserView.comment();

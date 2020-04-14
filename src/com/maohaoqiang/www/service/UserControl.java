@@ -27,10 +27,10 @@ public class UserControl {
                 }
             }
             if (judge==3){//经理
-                String fun= MangerView.mangerFrist();
+                //String fun= MangerView.mangerFrist();
                 decide=true;
                 while (decide){
-                    decide=DealManger.manger(fun,decide,userlogin);
+                    decide=DealManger.manger(decide,userlogin);
                 }
             }
         }
