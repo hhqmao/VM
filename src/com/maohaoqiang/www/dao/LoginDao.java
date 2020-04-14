@@ -26,7 +26,6 @@ public class LoginDao {
                 if(rs.getInt("power")==1)loginSuccess=1;
                 if(rs.getInt("power")==2)loginSuccess=2;
                 if(rs.getInt("power")==3)loginSuccess=3;
-                if(rs.getInt("power")==4)loginSuccess=4;
             }
         } catch (Exception e) {
             e.printStackTrace();

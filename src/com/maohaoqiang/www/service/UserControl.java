@@ -1,7 +1,5 @@
 package com.maohaoqiang.www.service;
 
-import com.maohaoqiang.www.po.User;
-import com.maohaoqiang.www.view.MangerView;
 import com.maohaoqiang.www.view.UserView;
 
 import java.util.Map;

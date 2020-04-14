@@ -5,11 +5,7 @@ import com.maohaoqiang.www.view.DecideView;
 import com.maohaoqiang.www.view.Out;
 import com.maohaoqiang.www.view.PersonalCenterView;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Map;
-import java.util.Scanner;
 
 public class UserChoice {
     private UserChoice(){}
